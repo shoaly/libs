@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>NotesForMenuTree demo</title>
+    <link href="Styles.css" rel="stylesheet" type="text/css" />
+
+    <script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>
+
+    <script src="js/JQuery-ui.js" type="text/javascript"></script>
+
+    <script src="js/JQuery.MenuTree.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#menu1').menuTree();
+
+            $('#menu2').menuTree({
+                expandSpeed: 1000,
+                collapseSpeed: 1000,
+                expandEasing: 'easeOutBounce',
+                collapseEasing: 'easeOutBounce',
+                parentMenuTriggerCallback: false,
+                multiOpenedSubMenu: true
+            });
+            $('#menu3').menuTree({
+                expandedNode: '2.1'
+            }, function(rel) {
+                alert(rel);
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <h1>
+        NotesForMenu: a simple multi-level menu tree plugin with JQuery</h1>
+    NotesForMenu is a very simple JQuery plugin to create a multi-level menu with only
+    one line of code. You can also very easily customize it. Do not hesitate to have
+    a look at the code. Any suggestions/remarks/improvements are welcome.
+    <h2>
+        Demo</h2>
+    <h3>
+        MenuTree demo 1</h3>
+    <p>
+        default behaviour</p>
+    <div id="menu1" class="menuTree">
+        <ul>
+            <li class="parent"><a href="#">Animals</a>
+                <ul>
+                    <li class="child"><a href="dog.htm">dog</a></li>
+                    <li class="child"><a href="cat.htm">cat</a></li>
+                    <li class="child"><a href="duck.htm">duck</a></li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Cars</a>
+                <ul>
+                    <li class="parent"><a href="#">VW</a>
+                        <ul>
+                            <li class="parent"><a class="parent" href="#">Golf</a>
+                                <ul>
+                                    <li class="child"><a href="gti.htm">GTI</a></li>
+                                    <li class="child"><a href="beline.htm">Berline</a></li>
+                                    <li class="child"><a href="break.htm">Break</a></li>
+                                </ul>
+                            </li>
+                            <li class="child"><a href="lupo.htm">Polo</a></li>
+                            <li class="child"><a href="polo.htm">Lupo</a></li>
+                        </ul>
+                    </li>
+                    <li class="parent"><a href="#">Peugeot</a>
+                        <ul>
+                            <li class="child"><a href="207.htm">207</a></li>
+                            <li class="child"><a href="308.htm">308</a></li>
+                            <li class="child"><a href="407.htm">407</a></li>
+                        </ul>
+                    </li>
+                    <li class="child"><a href="clio.htm">Renault clio</a></li>
+                </ul>
+            </li>
+            <li class="child"><a href="contact.htm">Contact</a></li>
+        </ul>
+    </div>
+    <h3>
+        MenuTree demo 2</h3>
+    <p>
+        expandSpeed: 1000<br />
+        collapseSpeed: 1000<br />
+        expandEasing: 'easeOutBounce'<br />
+        collapseEasing: 'easeOutBounce'<br />
+        multiOpenedSubMenu: true<br />
+    </p>
+    <div id="menu2" class="menuTree">
+        <ul>
+            <li class="parent"><a href="#">Animals</a>
+                <ul>
+                    <li class="child"><a href="dog.htm">dog</a></li>
+                    <li class="child"><a href="cat.htm">cat</a></li>
+                    <li class="child"><a href="duck.htm">duck</a></li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Cars</a>
+                <ul>
+                    <li class="parent"><a href="#">VW</a>
+                        <ul>
+                            <li class="parent"><a class="parent" href="#">Golf</a>
+                                <ul>
+                                    <li class="child"><a href="gti.htm">GTI</a></li>
+                                    <li class="child"><a href="beline.htm">Berline</a></li>
+                                    <li class="child"><a href="break.htm">Break</a></li>
+                                </ul>
+                            </li>
+                            <li class="child"><a href="lupo.htm">Polo</a></li>
+                            <li class="child"><a href="polo.htm">Lupo</a></li>
+                        </ul>
+                    </li>
+                    <li class="parent"><a href="#">Peugeot</a>
+                        <ul>
+                            <li class="child"><a href="207.htm">207</a></li>
+                            <li class="child"><a href="308.htm">308</a></li>
+                            <li class="child"><a href="407.htm">407</a></li>
+                        </ul>
+                    </li>
+                    <li class="child"><a href="clio.htm">Renault clio</a></li>
+                </ul>
+            </li>
+            <li class="child"><a href="contact.htm">Contact</a></li>
+        </ul>
+    </div>
+    <h3>
+        MenuTree demo 3</h3>
+    <p>
+        expandedNode: '2.1'<br />
+        callback: function(rel) {alert(rel)};
+    </p>
+    <div id="menu3" class="menuTree">
+        <ul>
+            <li class="parent"><a href="#" rel="1">Animals</a>
+                <ul>
+                    <li class="child"><a href="#" rel="1.1">dog</a></li>
+                    <li class="child"><a href="#" rel="1.2">cat</a></li>
+                    <li class="child"><a href="#" rel="1.3">duck</a></li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#" rel="2">Cars</a>
+                <ul>
+                    <li class="parent"><a href="#" rel="2.1">VW</a>
+                        <ul>
+                            <li class="parent"><a class="parent" href="#" rel="2.1.1">Golf</a>
+                                <ul>
+                                    <li class="child"><a href="#" rel="2.1.1.1">GTI</a></li>
+                                    <li class="child"><a href="#" rel="2.1.1.2">Berline</a></li>
+                                    <li class="child"><a href="#" rel="2.1.1.3">Break</a></li>
+                                </ul>
+                            </li>
+                            <li class="child"><a href="#" rel="2.1.2">Polo</a></li>
+                            <li class="child"><a href="#" rel="2.1.3">Lupo</a></li>
+                        </ul>
+                    </li>
+                    <li class="parent"><a href="#" rel="2.2">Peugeot</a>
+                        <ul>
+                            <li class="child"><a href="#" rel="2.2.1">207</a></li>
+                            <li class="child"><a href="#" rel="2.2.2">308</a></li>
+                            <li class="child"><a href="#" rel="2.2.3">407</a></li>
+                        </ul>
+                    </li>
+                    <li class="child"><a href="#" rel="2.3">Renault clio</a></li>
+                </ul>
+            </li>
+            <li class="child"><a href="#" rel="3">Contact</a></li>
+        </ul>
+    </div>
+    <h2>
+        How to use it?</h2>
+    <p>
+        1. Create your menu using the following tree structure and add class to <q>li</q>
+        elements:
+        <br />
+        <br />
+        <span style="padding-left: 20px">- <b>parent</b> for a node</span><br />
+        <span style="padding-left: 20px">- <b>child</b> for a leaf</span><br />
+    </p>
+    <xmp>
+        <div id="menu" class="menuTree">
+            <ul>
+                <li class="parent"><a href="#">Animals</a>
+                    <ul>
+                        <li class="child"><a href="dog.htm" >dog</a></li>
+                        <li class="child"><a href="cat.htm">cat</a></li>
+                        <li class="child"><a href="duck.htm">duck</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        </xmp>
+    <p>
+        2. Add external JQuery references and initialization script in your page:
+        <br />
+        <xmp>
+        <script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>
+        <script src="js/JQuery-ui.js" type="text/javascript"></script> <!-- Only needed for special easing effect -->
+        <script src="js/JQuery.MenuTree.js" type="text/javascript"></script>
+        </xmp>
+        <br />
+        <xmp>
+        <script type="text/javascript">
+            $(function() {
+                $('#menu1').menuTree();
+            });
+        </script>
+        </xmp>
+    </p>
+    <p>
+        3. (Optional) give parameter(s) and/or customize css:
+        <br />
+        <div style="padding-left: 20px">
+            <u>Options:</u><br />
+            <br />
+            <div style="padding-left: 20px">
+                menuEvent - event to trigger expand/collapse; default = click<br />
+                expandSpeed - default = 500 (ms); use -1 for no animation<br />
+                collapseSpeed - default = 500 (ms); use -1 for no animation<br />
+                expandEasing - easing function to use on expand (optional)<br />
+                collapseEasing - easing function to use on collapse (optional)<br />
+                multiOpenedSubMenu - whether or not to limit to one opened menu at a time; default
+                = false;<br />
+                parentMenuTriggerCallback - whether or not parent menu triggers callback; default
+                = false;<br />
+                expandedNode - default node to expand (optional)<br />
+                <br />
+                exemple:<br />
+            </div>
+            <xmp>
+            $('#menu2').menuTree({
+                expandSpeed: 1000,
+                collapseSpeed: 1000,
+                expandEasing: 'easeOutBounce',
+                collapseEasing: 'easeOutBounce',
+                parentMenuTriggerCallback: false;
+                multiOpenedSubMenu: true
+            });
+            </xmp>
+            <br />
+            <u>Callback:</u><br />
+            <br />
+            <div style="padding-left: 20px">
+                a callback function triggered with <b>rel</b> parameter (see demo3).<br />
+                <br />
+                exemple:<br />
+            </div>
+            <xmp>
+            $('#menu3').menuTree({
+                expandedNode: '2.1'
+            }, function(rel) {
+                alert(rel);
+            });
+            </xmp>
+            <br />
+            <u>Css:</u><br />
+            <br />
+            <div style="padding-left: 20px">
+                use the class defined in the div to customize your menu from the css file.<br />
+                <br />
+                exemple:<br />
+                <xmp>
+            Have a look at the file Styles.css
+            </xmp>
+            </div>
+        </div>
+    </p>
+    <h2>
+        History</h2>
+        <p>1.0 - first release (28 May 2009)</p>
+    <h2>
+        Licence</h2>
+    <p>
+        
+        This plug-in was inspired by the great <a href="http://abeautifulsite.net/notebook/58">JQuery File Tree</a> written by Cory S.N. LaViska.
+This plugin is dual-licensed under the GNU General Public License and the MIT License.</p>
+</body>
+</html>
