@@ -30,8 +30,8 @@ td{font-size:12px;}
   </tr>
   <tr>
     <td width="100%">
-	<div id="B1" style="width: 164px; height: 76px; overflow: hidden;">
-		<div id="B2">
+	<div id="B1" style="width: 164px; height: 76px; overflow: hidden;position:relative">
+		<div id="B2" style="position:relative">
 <table width="160" border="0" cellpadding="0" cellspacing="1" bgcolor="#cccccc" style="margin-top:-1px;">
 	<tbody class="datatd">
 		<tr>
@@ -83,7 +83,7 @@ A1,A2或B1,B2是滚动内容区域外的两个DIV的ID
 	<div id="B1">
 		<div id="B2">
 _W为滚动内容的宽度
-_H为滚动内容的高度,必须为单元格高度的整数倍，这里每个单元格是19px高
+_H为滚动内容的高度,必须和 最外面设置overflow:hidden那个div的高度一致
 _T为滚动后每次停留言时间
 
 CSode by 51windows.net

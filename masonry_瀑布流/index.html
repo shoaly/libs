@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style type="text/css">
+           
+        </style>
+    </head>
+    <body>
+   
+<style type="text/css">
+#container .item {
+	width:310px;
+	float:left;
+	margin-top:15px;
+}
+#wrapper2 {
+	text-align:center;
+}
+#wrapper {
+	margin:0 auto;
+	width:980px
+}
+</style>
+<div id="wrapper2" >
+  <div id="wrapper">
+    <div id="container">
+      <div class="item"><img width="310" src="img/DSC_0008.JPG" /></div>
+      <div class="item"><img width="310" src="img/DSC_0011.JPG" /></div>
+      <div class="item"><img width="310" src="img/DSC_0012.JPG" /></div>
+       <div class="item"><img width="310" src="img/DSC_0008.JPG" /></div>
+      <div class="item"><img width="310" src="img/DSC_0011.JPG" /></div>
+      <div class="item"><img width="310" src="img/DSC_0012.JPG" /></div>
+       <div class="item"><img width="310" src="img/DSC_0008.JPG" /></div>
+      <div class="item"><img width="310" src="img/DSC_0011.JPG" /></div>
+      <div class="item"><img width="310" src="img/DSC_0012.JPG" /></div>
+       <div class="item"><img width="310" src="img/DSC_0008.JPG" /></div>
+      <div class="item"><img width="310" src="img/DSC_0011.JPG" /></div>
+      <div class="item"><img width="310" src="img/DSC_0012.JPG" /></div>
+     
+
+    </div>
+  </div>
+</div>
+
+<nav id="page-nav">
+  <a href="server.php?page=2"></a>
+</nav>
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.masonry.min.js"></script> 
+<script src="js/jquery.infinitescroll.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    
+   var $container = $('#container');
+	$container.imagesLoaded(function(){
+		$container.masonry({
+			itemSelector : '.item',
+			columnWidth:310,
+			gutterWidth:15,
+			isFitWidth: true,
+			isAnimated: true
+		});
+	});
+    
+    $container.infinitescroll({
+		  navSelector  : '#page-nav',    // selector for the paged navigation 
+		  nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
+		  itemSelector : '.item',     // selector for all items you'll retrieve
+		  loading: {
+			  finishedMsg: 'No more pages to load.',
+	//		  img: 'css/loading.gif',
+			   finished: function() {
+//				   console.log($container.infinitescroll.options);
+                       $("#whenDone").show();
+                    
+                }, 
+      	  },
+		  debug:false,
+			 
+	      
+	       },
+	   // trigger Masonry as a callback
+                function (newElements) {
+					
+                    // hide new items while they are loading
+                    var $newElems = $(newElements).css({ opacity:0 });
+                    // ensure that images load before adding to masonry layout
+                    $newElems.imagesLoaded(function () {
+                        // show elems now they're ready
+                        $newElems.animate({ opacity:1 });
+                        $container.masonry('appended', $newElems, true);
+                    });
+                    
+                }
+	  
+	  
+	  
+	  );
+    
+  });
+		
+		
+
+</script>
+
+   
+    </body>
+</html>
