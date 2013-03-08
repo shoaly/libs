@@ -1,3 +1,23 @@
+<?php
+$IMG_PATH="img";
+$pics=searchImg($IMG_PATH);
+
+
+
+function searchImg($dir) {
+    $handle = opendir($dir . "/.");
+    $strfile = array();
+    while (false !== ($file = readdir($handle))) {
+        if ($file != "." && $file != "..") {
+            array_push($strfile, $file);   //输出文件名
+        }
+    }
+    closedir($handle);
+    return $strfile;
+}
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
@@ -22,30 +42,35 @@
 	margin:0 auto;
 	width:980px
 }
+
+#infscr-loading { 
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  left: 45%;
+  bottom: 40px;
+  width: 200px;
+  padding: 10px;
+  background: #000; 
+  opacity: 0.8;
+  color: #FFF;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+}
 </style>
 <div id="wrapper2" >
   <div id="wrapper">
     <div id="container">
-      <div class="item"><img width="310" src="img/DSC_0008.JPG" /></div>
-      <div class="item"><img width="310" src="img/DSC_0011.JPG" /></div>
-      <div class="item"><img width="310" src="img/DSC_0012.JPG" /></div>
-       <div class="item"><img width="310" src="img/DSC_0008.JPG" /></div>
-      <div class="item"><img width="310" src="img/DSC_0011.JPG" /></div>
-      <div class="item"><img width="310" src="img/DSC_0012.JPG" /></div>
-       <div class="item"><img width="310" src="img/DSC_0008.JPG" /></div>
-      <div class="item"><img width="310" src="img/DSC_0011.JPG" /></div>
-      <div class="item"><img width="310" src="img/DSC_0012.JPG" /></div>
-       <div class="item"><img width="310" src="img/DSC_0008.JPG" /></div>
-      <div class="item"><img width="310" src="img/DSC_0011.JPG" /></div>
-      <div class="item"><img width="310" src="img/DSC_0012.JPG" /></div>
-     
-
+				<?php for($i=0;$i<12;$i++){?>
+					<div class='item'><img width='310' src='<?php echo "$IMG_PATH/$pics[$i]"; ?>' /></div>
+				<?php }?>
     </div>
   </div>
 </div>
 
 <nav id="page-nav">
-  <a href="server.php?page=2"></a>
+  <a href="server.php?page=2"></a>  <!-- 这里没能找到替换page=2的api, 所以必须是page=2,3,4....这种范式,由于默认调用了4行,所以后台需要排除这4行以免重复 -->
 </nav>
 <script src="js/jquery.min.js"></script> 
 <script src="js/jquery.masonry.min.js"></script> 
@@ -70,14 +95,14 @@ $(function(){
 		  itemSelector : '.item',     // selector for all items you'll retrieve
 		  loading: {
 			  finishedMsg: 'No more pages to load.',
-	//		  img: 'css/loading.gif',
+			  img: 'css/loading.gif',
 			   finished: function() {
 //				   console.log($container.infinitescroll.options);
-                       $("#whenDone").show();
+                       $("#infscr-loading").hide(500);
                     
                 }, 
       	  },
-		  debug:false,
+		  debug:true,
 			 
 	      
 	       },
