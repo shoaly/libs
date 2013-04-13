@@ -1,234 +1,205 @@
-<?php
-
-/**
- * 此方法由@Tonton 提供
- * http://my.oschina.net/u/918697
- * @date 2012-12-12 
- */
-function genTree5($items) { 
-    foreach ($items as $item) 
-        $items[$item['pid']]['son'][$item['id']] = &$items[$item['id']]; 
-    return isset($items[0]['son']) ? $items[0]['son'] : array(); 
-} 
-
-/**
- * 将数据格式化成树形结构
- * @author Xuefen.Tong
- * @param array $items
- * @return array 
- */
-function genTree9($items) {
-    $tree = array(); //格式化好的树
-    foreach ($items as $item)
-        if (isset($items[$item['pid']]))
-            $items[$item['pid']]['son'][] = &$items[$item['id']];
-        else
-            $tree[] = &$items[$item['id']];
-    return $tree;
-}
-
-$items = array(
-    1 => array('id' => 1, 'pid' => 0, 'name' => '江西省'),
-    2 => array('id' => 2, 'pid' => 0, 'name' => '黑龙江省'),
-    3 => array('id' => 3, 'pid' => 1, 'name' => '南昌市'),
-    4 => array('id' => 4, 'pid' => 2, 'name' => '哈尔滨市'),
-    5 => array('id' => 5, 'pid' => 2, 'name' => '鸡西市'),
-    6 => array('id' => 6, 'pid' => 4, 'name' => '香坊区'),
-    7 => array('id' => 7, 'pid' => 4, 'name' => '南岗区'),
-    8 => array('id' => 8, 'pid' => 6, 'name' => '和兴路'),
-    9 => array('id' => 9, 'pid' => 7, 'name' => '西大直街'),
-    10 => array('id' => 10, 'pid' => 8, 'name' => '东北林业大学'),
-    11 => array('id' => 11, 'pid' => 9, 'name' => '哈尔滨工业大学'),
-    12 => array('id' => 12, 'pid' => 8, 'name' => '哈尔滨师范大学'),
-    13 => array('id' => 13, 'pid' => 1, 'name' => '赣州市'),
-    14 => array('id' => 14, 'pid' => 13, 'name' => '赣县'),
-    15 => array('id' => 15, 'pid' => 13, 'name' => '于都县'),
-    16 => array('id' => 16, 'pid' => 14, 'name' => '茅店镇'),
-    17 => array('id' => 17, 'pid' => 14, 'name' => '大田乡'),
-    18 => array('id' => 18, 'pid' => 16, 'name' => '义源村'),
-    19 => array('id' => 19, 'pid' => 16, 'name' => '上坝村'),
-);
-echo "<pre>";
-print_r(genTree5($items));
-print_r(genTree9($items));
-
-//后者输出格式，前者类似，只是数组键值不一样，不过不影响数据结构
-/*
-Array
-(
-[0] => Array
-    (
-        [id] => 1
-        [pid] => 0
-        [name] => 江西省
-        [son] => Array
-            (
-                [0] => Array
-                    (
-                        [id] => 3
-                        [pid] => 1
-                        [name] => 南昌市
-                    )
-
-                [1] => Array
-                    (
-                        [id] => 13
-                        [pid] => 1
-                        [name] => 赣州市
-                        [son] => Array
-                            (
-                                [0] => Array
-                                    (
-                                        [id] => 14
-                                        [pid] => 13
-                                        [name] => 赣县
-                                        [son] => Array
-                                            (
-                                            [0] => Array
-                                                (
-                                                    [id] => 16
-                                                    [pid] => 14
-                                                    [name] => 茅店镇
-                                                    [son] => Array
-                                                        (
-                                                        [0] => Array
-                                                            (
-                                                            [id] => 18
-                                                            [pid] => 16
-                                                            [name] => 义源村
-                                                            )
-
-                                                        [1] => Array
-                                                            (
-                                                            [id] => 19
-                                                            [pid] => 16
-                                                            [name] => 上坝村
-                                                            )
-
-                                                        )
-
-                                                )
-
-                                            [1] => Array
-                                                (
-                                                    [id] => 17
-                                                    [pid] => 14
-                                                    [name] => 大田乡
-                                                )
-
-                                            )
-
-                                    )
-
-                                [1] => Array
-                                    (
-                                        [id] => 15
-                                        [pid] => 13
-                                        [name] => 于都县
-                                    )
-
-                            )
-
-                    )
-
-            )
-
-    )
-
-[1] => Array
-    (
-        [id] => 2
-        [pid] => 0
-        [name] => 黑龙江省
-        [son] => Array
-            (
-                [0] => Array
-                    (
-                        [id] => 4
-                        [pid] => 2
-                        [name] => 哈尔滨市
-                        [son] => Array
-                            (
-                            [0] => Array
-                                (
-                                    [id] => 6
-                                    [pid] => 4
-                                    [name] => 香坊区
-                                    [son] => Array
-                                        (
-                                        [0] => Array
-                                            (
-                                                [id] => 8
-                                                [pid] => 6
-                                                [name] => 和兴路
-                                                [son] => Array
-                                                    (
-                                                        [0] => Array
-                                                            (
-                                                            [id] => 10
-                                                            [pid] => 8
-                                                            [name] => 
-                                                             东北林业大学
-                                                            )
-
-                                                        [1] => Array
-                                                            (
-                                                            [id] => 12
-                                                            [pid] => 8
-                                                            [name] => 
-                                                            哈尔滨师范大学
-                                                            )
-
-                                                    )
-
-                                            )
-
-                                        )
-
-                                )
-
-                            [1] => Array
-                                (
-                                    [id] => 7
-                                    [pid] => 4
-                                    [name] => 南岗区
-                                    [son] => Array
-                                        (
-                                        [0] => Array
-                                            (
-                                            [id] => 9
-                                            [pid] => 7
-                                            [name] => 西大直街
-                                            [son] => Array
-                                                (
-                                                [0] => Array
-                                                    (
-                                                    [id] => 11
-                                                    [pid] => 9
-                                                    [name] => 
-                                                     哈尔滨工业大学
-                                                    )
-
-                                                )
-
-                                            )
-
-                                        )
-
-                                )
-
-                            )
-
-                    )
-
-                [1] => Array
-                    (
-                        [id] => 5
-                        [pid] => 2
-                        [name] => 鸡西市
-                    )
-
-            )
-
-    )
-)*/
+<?php  
+/**  
+* 通用的树型类，可以生成任何树型结构  
+*
+*$result = array(  
+*         1 => array('id'=>'1','parentid'=>0,'name'=>'一级栏目一'),  
+*         2 => array('id'=>'2','parentid'=>0,'name'=>'一级栏目二'),  
+*         3 => array('id'=>'3','parentid'=>1,'name'=>'二级栏目一'),  
+*         4 => array('id'=>'4','parentid'=>1,'name'=>'二级栏目二'),  
+*         5 => array('id'=>'5','parentid'=>2,'name'=>'二级栏目三'),  
+*         6 => array('id'=>'6','parentid'=>3,'name'=>'三级栏目一'),  
+*         7 => array('id'=>'7','parentid'=>3,'name'=>'三级栏目二')  
+*         )  
+*$tree = new Tree($result);
+*
+*print_r($tree->get_tree(1,"[\$id ,\$name,\$parentid]"));
+*/ 
+class Tree  
+{  
+    /**  
+    * 生成树型结构所需要的2维数组  
+    * @var array  
+    */ 
+    var $arr = array();  
+ 
+    /**  
+    * 生成树型结构所需修饰符号，可以换成图片  
+    * @var array  
+    */ 
+    var $icon = array('│','├','└');  
+ 
+    /**  
+    * @access private  
+    */ 
+    var $ret = '';  
+ 
+    /**  
+    * 构造函数，初始化类  
+    * @param array 2维数组，例如：  
+    * array(  
+    *      1 => array('id'=>'1','parentid'=>0,'name'=>'一级栏目一'),  
+    *      2 => array('id'=>'2','parentid'=>0,'name'=>'一级栏目二'),  
+    *      3 => array('id'=>'3','parentid'=>1,'name'=>'二级栏目一'),  
+    *      4 => array('id'=>'4','parentid'=>1,'name'=>'二级栏目二'),  
+    *      5 => array('id'=>'5','parentid'=>2,'name'=>'二级栏目三'),  
+    *      6 => array('id'=>'6','parentid'=>3,'name'=>'三级栏目一'),  
+    *      7 => array('id'=>'7','parentid'=>3,'name'=>'三级栏目二')  
+    *      )  
+    */ 
+    function tree($arr=array())  
+    {  
+       $this->arr = $arr;  
+       $this->ret = '';  
+       return is_array($arr);  
+    }  
+ 
+    /**  
+    * 得到父级数组  
+    * @param int  
+    * @return array  
+    */ 
+    function get_parent($myid)  
+    {  
+        $newarr = array();  
+        if(!isset($this->arr[$myid])) return false;  
+        $pid = $this->arr[$myid]['parentid'];  
+        $pid = $this->arr[$pid]['parentid'];  
+        if(is_array($this->arr))  
+        {  
+            foreach($this->arr as $id => $a)  
+            {  
+                if($a['parentid'] == $pid) $newarr[$id] = $a;  
+            }  
+        }  
+        return $newarr;  
+    }  
+ 
+    /**  
+    * 得到子级数组  
+    * @param int  
+    * @return array  
+    */ 
+    function get_child($myid)  
+    {  
+        $a = $newarr = array();  
+        if(is_array($this->arr))  
+        {  
+            foreach($this->arr as $id => $a)  
+            {  
+                if($a['parentid'] == $myid) $newarr[$id] = $a;  
+            }  
+        }  
+        return $newarr ? $newarr : false;  
+    }  
+ 
+    /**  
+    * 得到当前位置数组  
+    * @param int  
+    * @return array  
+    */ 
+    function get_pos($myid,&$newarr)  
+    {  
+        $a = array();  
+        if(!isset($this->arr[$myid])) return false;  
+        $newarr[] = $this->arr[$myid];  
+        $pid = $this->arr[$myid]['parentid'];  
+        if(isset($this->arr[$pid]))  
+        {  
+            $this->get_pos($pid,$newarr);  
+        }  
+        if(is_array($newarr))  
+        {  
+            krsort($newarr);  
+            foreach($newarr as $v)  
+            {  
+                $a[$v['id']] = $v;  
+            }  
+        }  
+        return $a;  
+    }  
+ 
+ 
+    /**  
+     * -------------------------------------  
+     *  得到树型结构  
+     * -------------------------------------  
+     * @author  Midnight(杨云洲),  yangyunzhou@foxmail.com  
+     * @param $myid 表示获得这个ID下的所有子级  
+     * @param $str 生成树形结构基本代码, 例如: "<option value=\$id \$select>\$spacer\$name</option>"  
+     * @param $sid 被选中的ID, 比如在做树形下拉框的时候需要用到  
+     * @param $adds  
+     * @param $str_group  
+     * @return unknown_type  
+     */ 
+    function get_tree($myid, $str, $sid = 0, $adds = '', $str_group = '')  
+    {  
+        $number=1;  
+        $child = $this->get_child($myid);  
+        if(is_array($child))  
+        {  
+            $total = count($child);  
+            foreach($child as $id=>$a)  
+            {  
+                $j=$k='';  
+                if($number==$total)  
+                {  
+                    $j .= $this->icon[2];  
+                }  
+                else 
+                {  
+                    $j .= $this->icon[1];  
+                    $k = $adds ? $this->icon[0] : '';  
+                }  
+                $spacer = $adds ? $adds.$j : '';  
+                $selected = $id==$sid ? 'selected' : '';  
+                @extract($a);  
+                $parentid == 0 && $str_group ? eval("\$nstr = \"$str_group\";") : eval("\$nstr = \"$str\";");  
+                $this->ret .= $nstr;  
+                $this->get_tree($id, $str, $sid, $adds.$k.'&nbsp;',$str_group);  
+                $number++;  
+            }  
+        }  
+        return $this->ret;  
+    }  
+    /**  
+    * 同上一方法类似,但允许多选  
+    */ 
+    function get_tree_multi($myid, $str, $sid = 0, $adds = '')  
+    {  
+        $number=1;  
+        $child = $this->get_child($myid);  
+        if(is_array($child))  
+        {  
+            $total = count($child);  
+            foreach($child as $id=>$a)  
+            {  
+                $j=$k='';  
+                if($number==$total)  
+                {  
+                    $j .= $this->icon[2];  
+                }  
+                else 
+                {  
+                    $j .= $this->icon[1];  
+                    $k = $adds ? $this->icon[0] : '';  
+                }  
+                $spacer = $adds ? $adds.$j : '';  
+ 
+                $selected = $this->have($sid,$id) ? 'selected' : '';  
+                //echo $sid.'=>'.$id.' : '.$selected.' . <br/>';  
+                @extract($a);  
+                eval("\$nstr = \"$str\";");  
+                $this->ret .= $nstr;  
+                $this->get_tree_multi($id, $str, $sid, $adds.$k.'&nbsp;');  
+                $number++;  
+            }  
+        }  
+        return $this->ret;  
+    }  
+ 
+    function have($list,$item){  
+        return(strpos(',,'.$list.',',','.$item.','));  
+    }  
+}  
+?> 
