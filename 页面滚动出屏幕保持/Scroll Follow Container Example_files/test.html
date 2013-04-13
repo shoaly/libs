@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0052)http://kitchen.net-perspective.com/sf-example-3.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	
+	
+	<title>Scroll Follow Container Example</title>
+	
+	<script type="text/javascript" src="jquery.js"></script><style type="text/css"></style>
+	<script type="text/javascript" src="ui.core.js"></script>
+   	<script type="text/javascript" src="jquery.scroll-follow.js"></script>
+	
+   	<script type="text/javascript">
+   		$( document ).ready( function ()
+			{
+				$( '#example3' ).scrollFollow();
+			}
+		);
+   	</script>
+	
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			height: 2000px;
+			font-family: Georgia;
+			font-size: 0.9em;
+			line-height: 1.4em;
+		}
+		
+		#container {
+			width: 224px;
+			height: 780px;
+			
+			padding: 10px;
+			left:0;
+			top:100px;
+			position:absolute;
+			background: #ccc;
+			border:1px solid red;
+		}
+		
+		#example3 {
+			position: absolute;
+			width: 180px;
+			padding: 20px;
+			background: #eee url(/images/sfbgTile.png);
+			border: 2px solid #42CBDC;
+		}
+		
+		p {
+			margin: 7px 0 0 0;
+		}
+		
+		a {
+			color: blue;
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	</style>
+<body>
+		<div id="container" >
+			<div id="example3"><img src="ducks3.png" /></div>
+		</div>
+<body>
+</html>
